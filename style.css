@@ -176,10 +176,44 @@
 .btn-danger:hover { background: #dc2626; }
 
 /* Responsive */
-@media (max-width: 900px) {
-  body { flex-direction: column; height: auto; overflow: auto; }
-  .camera-container, .app-container { width: 100%; }
+
+/* Phones/small tablets held in portrait: force a visual landscape layout via
+   CSS rotation, since the real Screen Orientation Lock API needs fullscreen
+   and isn't supported in iOS Safari at all. */
+@media (max-width: 900px) and (orientation: portrait) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    height: 100vw;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+  /* Allow the app panel to scroll vertically instead of clipping content
+     on short phone widths (which become short heights once rotated) */
+  body { height: 100vw; overflow: hidden; }
+  .app-container { overflow-y: auto; }
 }
+
+/* General phone tightening — smaller type, tighter spacing, so the whole
+   layout fits comfortably in a phone-sized landscape strip */
+@media (max-width: 700px) {
+  .camera-container { width: 38%; padding: 12px; }
+  .app-container { width: 62%; padding: 16px 20px; gap: 10px; }
+  .header h1 { font-size: 19px; }
+  .timer-box { font-size: 16px; padding: 8px 14px; }
+  .air-btn { width: 56px; height: 56px; font-size: 9px; }
+  .status-badge { font-size: 12px; padding: 8px; margin-top: 8px; }
+  .card { padding: 16px; min-height: 0; margin: 12px 0; }
+  .step-number { font-size: 13px; }
+  .step-title { font-size: 18px; margin: 8px 0; }
+  .guide { font-size: 11px; padding: 10px; }
+  .menu { font-size: 12px; padding: 8px 14px; }
+  .menu-list-panel { max-height: 160px; overflow-y: auto; }
+}
+
 @media (max-width: 480px) {
   .modal { max-width: 94vw; }
   .step-timer-inputs input { width: 46px; }
