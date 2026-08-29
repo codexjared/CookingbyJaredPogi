@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AuraCook - Alarm & Vibration Prototype</title>
+  <link rel="stylesheet" href="./style.css">
+  <!-- MediaPipe Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+
+  <style>
+
+  </style>
+</head>
+<body>
+
+  <div class="haptic-pulse" id="pulseOverlay"></div>
+
+  <!-- Left: Camera Panel -->
+  <div class="camera-container">
+    <div class="video-wrapper" id="videoWrapper">
+      <video id="webcam" autoplay playsinline></video>
+      <div class="air-buttons-overlay">
+        <div class="air-btn" id="btnNext">▶<br>NEXT</div>
+        <div class="air-btn" id="btnPause">⏸<br>PAUSE</div>
+        <div class="air-btn" id="btnPrev">◀<br>PREV</div>
+      </div>
+    </div>
+    <div class="status-badge" id="gestureStatus">Initializing Air Sensors...</div>
+  </div>
+
+  <!-- Right: App UI Panel -->
+  <div class="app-container">
+    <div class="header">
+      <h1>AuraCook Assistant</h1>
+      <div class="timer-box" id="timerDisplay"></div>
+    </div>
+
+    <div class="menu-actions-row">
+      <div class="menu" id="btnAddMenu">
+        <i class="fa-solid fa-plus"></i>
+        Add Menu
+      </div>
+      <div class="menu" id="btnShowMenus">
+        <i class="fa-solid fa-utensils"></i>
+        Menus
+      </div>
+    </div>
+
+    <!-- Saved menus list (toggled by the "Menus" button) -->
+    <div class="menu-list-panel" id="menuListPanel">
+      <div class="menu-list-panel-title">All Menus</div>
+      <div class="menu-list" id="menuList"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top-row">
+        <div class="step-number" id="stepNum">Step 1 of 3</div>
+        <button class="edit-current-btn" id="btnEditCurrent" title="Edit this menu">✎ Edit Menu</button>
+      </div>
+      <div class="step-title" id="stepContent">Wash and slice the ingredients into small cubes.</div>
+    </div>
+
+    <div class="guide">
+      <strong>How to Use Air Buttons:</strong>
+      <p>I-turo ang iyong <strong>Index Finger</strong> sa alinmang bilog na button sa camera para mag-navigate o mag-pause.</p>
+    </div>
+  </div>
+
+  <!-- Add / Edit Menu Modal -->
+  <div class="modal-overlay" id="menuModalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modalTitle">Add Menu</h2>
+        <button class="modal-close" id="btnCloseModal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <label class="field-label">Menu / Food Name</label>
+        <input type="text" id="inputMenuName" class="field-input" placeholder="e.g. Chicken Adobo">
+
+        <label class="field-label">Description <span class="optional-tag">(optional)</span></label>
+        <textarea id="inputMenuDesc" class="field-input" rows="2" placeholder="Short description of this dish"></textarea>
+
+        <label class="field-label">Ingredients <span class="optional-tag">(optional)</span></label>
+        <textarea id="inputMenuIngredients" class="field-input" rows="3" placeholder="One ingredient per line"></textarea>
+
+        <label class="field-label">Cooking Steps</label>
+        <div id="stepsEditor" class="steps-editor"></div>
+        <button class="add-step-btn" id="btnAddStep" type="button">+ Add Step</button>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" id="btnCancelModal">Cancel</button>
+        <button class="btn-primary" id="btnSaveMenu">Save Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Generic Confirm Modal (used for Delete Menu) -->
+  <div class="modal-overlay" id="confirmModalOverlay">
+    <div class="modal confirm-modal">
+      <div class="modal-body">
+        <p id="confirmMessage">Are you sure?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="btnConfirmCancel">Cancel</button>
+        <button class="btn-danger" id="btnConfirmOk">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./java.js"></script>
+  <script src="https://kit.fontawesome.com/d65d73018d.js" crossorigin="anonymous"></script>
+</body>
+</html>
