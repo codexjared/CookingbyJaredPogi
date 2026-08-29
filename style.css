@@ -40,17 +40,17 @@
 /* Make "Add Menu" / "Menus" clickable — styled like the timer-box pill */
 .menu {
   cursor: pointer; user-select: none; display: flex; align-items: center; gap: 8px;
-  background: #334155; padding: 12px 20px; border-radius: 10px;
-  font-size: 14px; font-weight: bold; color: #f8fafc; transition: all 0.2s ease;
+  background: #006aff; padding: 12px 20px; border-radius: 10px;
+  font-size: 14px; font-weight: bold; color: #000000; transition: all 0.2s ease;
   width: fit-content;
 }
-.menu:hover { background: #475569; }
+.menu:hover { background: #0a2c5a; color: white;}
 .menu-actions-row { display: flex; gap: 10px; }
 
 /* Collapsible "All Menus" panel, toggled by the Menus button */
 .menu-list-panel {
   display: none;
-  margin-top: 4px;
+  margin-top: 10px;
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 12px;
@@ -176,24 +176,10 @@
 .btn-danger:hover { background: #dc2626; }
 
 /* Responsive */
-
-/* Phones/small tablets held in portrait: force a visual landscape layout via
-   CSS rotation, since the real Screen Orientation Lock API needs fullscreen
-   and isn't supported in iOS Safari at all. */
-@media (max-width: 900px) and (orientation: portrait) {
-  html {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    width: 100vh;
-    height: 100vw;
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
-  }
-  body { height: 100vw; overflow: hidden; }
+@media (max-width: 900px) {
+  body { flex-direction: column; height: auto; overflow: auto; }
+  .camera-container, .app-container { width: 100%; }
 }
-
 @media (max-width: 480px) {
   .modal { max-width: 94vw; }
   .step-timer-inputs input { width: 46px; }
