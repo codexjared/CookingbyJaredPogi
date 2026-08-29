@@ -14,10 +14,10 @@
     .status-badge { margin-top: 15px; padding: 12px; background: #334155; border-radius: 8px; font-weight: bold; width: 100%; text-align: center; color: #38bdf8; }
     
     /* Right Panel: Recipe App UI */
-    .app-container { width: 60%; padding: 40px; display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(135deg, #0f172a, #1e1b4b); position: relative; }
+    .app-container { width: 60%; padding: 40px; display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(135deg, #0f172a, #1e1b4b); position: relative;}
     .header { display: flex; justify-content: space-between; align-items: center; }
-    .header h1 { font-size: 28px; color: #f8fafc; }
-    .timer-box { background: #22c55e; padding: 12px 24px; border-radius: 10px; font-size: 22px; font-weight: bold; transition: all 0.3s ease; font-family: monospace; }
+    .header h1 { font-size: 28px; color: #f8fafc; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .timer-box { background: #22c55e; padding: 12px 24px; border-radius: 10px; font-size: 22px; font-weight: bold; transition: all 0.3s ease; font-family: monospace; flex-shrink: 0; white-space: nowrap; }
     .timer-box.paused { background: #64748b; }
     .timer-box.alarm { background: #ef4444; animation: blink 0.5s infinite alternate; }
 
@@ -186,7 +186,7 @@
 
 @media (max-width: 480px) {
   .header h1 { font-size: 20px; }
-  .timer-box { font-size: 16px; padding: 8px 14px; }
+  .timer-box { font-size: 16px; padding: 8px 14px; min-height: 25px; display: flex; align-items: center; line-height: 1; }
   .air-btn { width: 58px; height: 58px; font-size: 9px; }
   .status-badge { font-size: 12px; padding: 8px; margin-top: 8px; }
   .card { padding: 18px; min-height: 0; margin: 16px 0; }
