@@ -535,12 +535,6 @@ btnPause.addEventListener('click', () => {
 
 function triggerHapticFeedback(actionName) {
   gestureStatusEl.innerText = "Air Button Activated: " + actionName;
-
-  // Real haptic buzz — short and light, distinct from the longer TIME'S UP alarm pattern
-  if ("vibrate" in navigator) {
-    navigator.vibrate(40);
-  }
-
   try {
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const osc = audioCtx.createOscillator();
