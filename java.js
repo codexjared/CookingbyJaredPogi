@@ -1,5 +1,5 @@
 /* =========================================================
-   AURACOOK ASSISTANT
+   COOKING ASSISTANT
    - Menus are stored in localStorage (key: "auracook_menus")
    - Each menu: { id, name, description, ingredients, steps: [{ instruction, duration }] }
      duration is in seconds, or null when the step has no timer.
@@ -560,20 +560,6 @@ function initApp() {
 }
 
 initApp();
-
-/* Best-effort native landscape lock (Android Chrome only; needs a user tap
-   and fullscreen — most browsers, including iOS Safari, don't support this,
-   which is why the CSS rotation above is the real fix). Runs once on first
-   tap anywhere on the page. */
-function tryLockLandscape() {
-  const el = document.documentElement;
-  const requestFs = el.requestFullscreen || el.webkitRequestFullscreen;
-  if (!requestFs || !screen.orientation || !screen.orientation.lock) return;
-  requestFs.call(el)
-    .then(() => screen.orientation.lock('landscape'))
-    .catch(() => { /* not supported / denied — CSS rotation still applies */ });
-}
-document.addEventListener('click', tryLockLandscape, { once: true });
 
 /* ================= MEDIAPIPE AIR BUTTON SENSORS ================= */
 const videoElement = document.getElementById('webcam');
